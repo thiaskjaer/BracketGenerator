@@ -8,6 +8,7 @@ import android.widget.EditText
 import android.widget.LinearLayout
 
 
+
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,7 +27,7 @@ class MainActivity : AppCompatActivity() {
 
 
         //a list to keep track of the textfields
-        val nameList = mutableListOf<EditText>()
+        val nameList = ArrayList<EditText>()
 
         //adds the first textfield when constructed
         val firstText = EditText(this)
@@ -44,9 +45,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         //The method that starts the BracketView activity
-        //TODO: add list of names to intent
         buildButton.setOnClickListener{
             val intent = Intent(this, BracketView::class.java)
+            intent.putExtra("Names", nameList)
             startActivity(intent)
         }
     }
