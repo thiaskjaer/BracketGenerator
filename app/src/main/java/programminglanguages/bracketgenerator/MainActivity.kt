@@ -1,5 +1,6 @@
 package programminglanguages.bracketgenerator
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -15,6 +16,9 @@ class MainActivity : AppCompatActivity() {
 
         //The add name button
         val addNameButton = findViewById<Button>(R.id.AddName)
+
+        //The button that opens the BracketView activity
+        val buildButton = findViewById<Button>(R.id.Build)
 
         //The layout containing the button and textfields
         val linear = findViewById<LinearLayout>(R.id.Linear)
@@ -37,6 +41,13 @@ class MainActivity : AppCompatActivity() {
             newText.setText("Name")
             linear.addView(newText)
             nameList.add(newText)
+        }
+
+        //The method that starts the BracketView activity
+        //TODO: add list of names to intent
+        buildButton.setOnClickListener{
+            val intent = Intent(this, BracketView::class.java)
+            startActivity(intent)
         }
     }
 }
