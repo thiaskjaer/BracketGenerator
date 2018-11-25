@@ -24,8 +24,6 @@ class MainActivity : AppCompatActivity() {
         //The layout containing the button and textfields
         val linear = findViewById<LinearLayout>(R.id.Linear)
 
-
-
         //a list to keep track of the textfields
         val nameList = ArrayList<EditText>()
 
@@ -46,8 +44,14 @@ class MainActivity : AppCompatActivity() {
 
         //The method that starts the BracketView activity
         buildButton.setOnClickListener{
+            //Making a StringArrayList of the names since it's easier to pass to the other activity
+            val names = ArrayList<String>()
+            for(name in nameList){
+                names.add(name.text.toString())
+            }
+
             val intent = Intent(this, BracketView::class.java)
-            intent.putExtra("Names", nameList)
+            intent.putStringArrayListExtra("Names", names)
             startActivity(intent)
         }
     }
