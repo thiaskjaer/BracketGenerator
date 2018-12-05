@@ -42,15 +42,24 @@ class BracketView : AppCompatActivity() {
         //Test toast to test if the names have been transferred correctly
         Toast.makeText(this, names.last(), Toast.LENGTH_SHORT).show()
 
-
+        //TODO add correct number of winnerbuttons
+///////////////////////////////////////////////////////////////////TEST///////////////////////////////////////////////
+        val newButton = Button(this)
+        val newButton2 = Button(this)
+        linear.addView(newButton)
+        linear.addView(newButton2)
+        winnerButtons.add(newButton)
+        winnerButtons.add(newButton2)
+///////////////////////////////////////////////////////////////////TEST///////////////////////////////////////////////
     }
 
     //method for setting the first empty winner button to the clicked button's name
+    //TODO don't infinitely loop if all winnerbuttons set
     private fun setWinnerButtonName(name: String){
         var nameNotSet = true
         var arrayIterator = 0
         while(nameNotSet){
-            if(winnerButtons[arrayIterator].text==null){
+            if(winnerButtons[arrayIterator].text==""){
                 winnerButtons[arrayIterator].text=name
                 nameNotSet=false
             }
