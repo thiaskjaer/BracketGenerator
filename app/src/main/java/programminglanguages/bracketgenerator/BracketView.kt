@@ -7,6 +7,8 @@ import android.widget.LinearLayout
 import android.widget.Toast
 
 class BracketView : AppCompatActivity() {
+    //an ArrayList of buttons for the winners of games
+    private val winnerButtons = ArrayList<Button>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,9 +31,30 @@ class BracketView : AppCompatActivity() {
             buttons.add(newButton)
         }
 
+        //sets onClickListeners to buttons in order to get the names of the corresponding buttons and setting a winnerbutton
+        for(button in buttons){
+            button.setOnClickListener{
+                val name = button.text.toString()
+                setWinnerButtonName(name)
+            }
+        }
+
         //Test toast to test if the names have been transferred correctly
         Toast.makeText(this, names.last(), Toast.LENGTH_SHORT).show()
 
 
+    }
+
+    //method for setting the first empty winner button to the clicked button's name
+    private fun setWinnerButtonName(name: String){
+        var nameNotSet = true
+        var arrayIterator = 0
+        while(nameNotSet){
+            if(winnerButtons[arrayIterator].text==null){
+                winnerButtons[arrayIterator].text=name
+                nameNotSet=false
+            }
+            arrayIterator++
+        }
     }
 }
