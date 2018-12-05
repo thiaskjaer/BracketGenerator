@@ -23,6 +23,7 @@ class BracketView : AppCompatActivity() {
         //an ArrayList to contain buttons that will be used as the people's position in a bracket
         val buttons = ArrayList<Button>()
 
+        //TODO add labels to indicate matches between buttons
         //a loop for populating the screen and buttons ArrayList with buttons with the competitors names
         for(name in names){
             val newButton = Button(this)
@@ -39,18 +40,20 @@ class BracketView : AppCompatActivity() {
             }
         }
 
-        //Test toast to test if the names have been transferred correctly
-        Toast.makeText(this, names.last(), Toast.LENGTH_SHORT).show()
+
 
         //TODO add correct number of winnerbuttons
-///////////////////////////////////////////////////////////////////TEST///////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////TESTS///////////////////////////////////////////////
         val newButton = Button(this)
         val newButton2 = Button(this)
         linear.addView(newButton)
         linear.addView(newButton2)
         winnerButtons.add(newButton)
         winnerButtons.add(newButton2)
-///////////////////////////////////////////////////////////////////TEST///////////////////////////////////////////////
+
+        //Test toast to test if the names have been transferred correctly
+        //Toast.makeText(this, names.last(), Toast.LENGTH_SHORT).show()
+///////////////////////////////////////////////////////////////////TESTS///////////////////////////////////////////////
     }
 
     //method for setting the first empty winner button to the clicked button's name
