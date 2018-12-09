@@ -19,6 +19,7 @@ class BracketView : AppCompatActivity() {
 
         //receiving the intent containing the names as a StringArrayList
         val names = intent.getStringArrayListExtra("Names")
+        names.shuffle()
 
         //an ArrayList to contain buttons that will be used as the people's position in a bracket
         val buttons = ArrayList<Button>()
