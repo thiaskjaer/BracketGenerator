@@ -25,7 +25,7 @@ class BracketView : AppCompatActivity() {
         //an ArrayList to contain buttons that will be used as the people's position in a bracket
         val buttons = ArrayList<Button>()
 
-        //TODO add labels to indicate matches between buttons
+        //TODO take of how an uneven amount of players is handled
         //a loop for populating the screen and buttons ArrayList with buttons with the competitors names
         //also adds textViews to indicate matches
         var counter = 0
