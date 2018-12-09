@@ -44,8 +44,6 @@ class MainActivity : AppCompatActivity() {
 
         //The method that starts the BracketView activity
         buildButton.setOnClickListener{
-            if(nameList.size.rem(2)==0){
-                //Making a StringArrayList of the names since it's easier to pass to the other activity
                 val names = ArrayList<String>()
                 for(name in nameList){
                     names.add(name.text.toString())
@@ -54,9 +52,7 @@ class MainActivity : AppCompatActivity() {
                 val intent = Intent(this, BracketView::class.java)
                 intent.putStringArrayListExtra("Names", names)
                 startActivity(intent)
-            }else{
-                Toast.makeText(this, "Please enter an even amount of players", Toast.LENGTH_SHORT).show()
-            }
+
         }
     }
 }

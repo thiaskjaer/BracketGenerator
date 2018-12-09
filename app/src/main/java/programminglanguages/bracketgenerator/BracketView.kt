@@ -25,7 +25,6 @@ class BracketView : AppCompatActivity() {
         //an ArrayList to contain buttons that will be used as the people's position in a bracket
         val buttons = ArrayList<Button>()
 
-        //TODO take of how an uneven amount of players is handled
         //a loop for populating the screen and buttons ArrayList with buttons with the competitors names
         //also adds textViews to indicate matches
         var counter = 0
@@ -34,10 +33,15 @@ class BracketView : AppCompatActivity() {
             val newButton = Button(this)
             val newLabel = TextView(this)
             //adds a textView for every second button added
-            if(counter.rem(2)==0){
+            if(counter.rem(2)==0 && counter!=names.lastIndex){
                 newLabel.text="Match " + matchNo
                 linear.addView(newLabel)
                 matchNo++
+            }
+            //if there is an uneven amount of players, a winner label is set
+            else if(counter.rem(2)==0 && counter==names.lastIndex){
+                newLabel.text="Winner 1 "
+                linear.addView(newLabel)
             }
             newButton.setText(name)
             linear.addView(newButton)
