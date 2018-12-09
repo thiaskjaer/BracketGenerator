@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
 
 class BracketView : AppCompatActivity() {
@@ -26,11 +27,22 @@ class BracketView : AppCompatActivity() {
 
         //TODO add labels to indicate matches between buttons
         //a loop for populating the screen and buttons ArrayList with buttons with the competitors names
+        //also adds textViews to indicate matches
+        var counter = 0
+        var matchNo = 1
         for(name in names){
             val newButton = Button(this)
+            val newLabel = TextView(this)
+            //adds a textView for every second button added
+            if(counter.rem(2)==0){
+                newLabel.text="Match " + matchNo
+                linear.addView(newLabel)
+                matchNo++
+            }
             newButton.setText(name)
             linear.addView(newButton)
             buttons.add(newButton)
+            counter+=1
         }
 
         //sets onClickListeners to buttons in order to get the names of the corresponding buttons and setting a winnerbutton
