@@ -74,13 +74,14 @@ class BracketView : AppCompatActivity() {
     }
 
     //method for setting the first empty winner button to the clicked button's name
-    //TODO don't infinitely loop if all winnerbuttons set
     private fun setWinnerButtonName(name: String){
         var nameNotSet = true
         var arrayIterator = 0
         while(nameNotSet){
             if(winnerButtons[arrayIterator].text==""){
                 winnerButtons[arrayIterator].text=name
+                nameNotSet=false
+            }else if(winnerButtons.last().text!=""){
                 nameNotSet=false
             }
             arrayIterator++
