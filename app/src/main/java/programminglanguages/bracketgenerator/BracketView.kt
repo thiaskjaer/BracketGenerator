@@ -29,6 +29,7 @@ class BracketView : AppCompatActivity() {
         //also adds textViews to indicate matches
         var counter = 0
         var matchNo = 1
+        var unevenWinner = 0
         for(name in names){
             val newButton = Button(this)
             val newLabel = TextView(this)
@@ -40,8 +41,9 @@ class BracketView : AppCompatActivity() {
             }
             //if there is an uneven amount of players, a winner label is set
             else if(counter.rem(2)==0 && counter==names.lastIndex){
-                newLabel.text="Winner 1 "
+                newLabel.text="Winner Match "
                 linear.addView(newLabel)
+                unevenWinner++
             }
             newButton.setText(name)
             linear.addView(newButton)
@@ -57,20 +59,53 @@ class BracketView : AppCompatActivity() {
             }
         }
 
+        //setup winner buttons and labels depending on even or uneven amounts of players
+        var winnerAmount = names.size-2
+        if(names.size.rem(2)==0) {
+            for (i in 1..winnerAmount) {
+                if (i.rem(2) == 1) {
+                    val newLabel = TextView(this)
+                    newLabel.text = "Winner Match "
+                    linear.addView(newLabel)
+                }
+                val newButton1 = Button(this)
+                linear.addView(newButton1)
+                winnerButtons.add(newButton1)
+            }
+        }else{
+            for (i in 1..(winnerAmount-1)) {
+                if(i==1){
+                    val newButton1 = Button(this)
+                    linear.addView(newButton1)
+                    winnerButtons.add(newButton1)
+                }
+                if (i.rem(2) == 1) {
+                    val newLabel = TextView(this)
+                    newLabel.text = "Winner Match "
+                    linear.addView(newLabel)
+                }
+                val newButton1 = Button(this)
+                linear.addView(newButton1)
+                winnerButtons.add(newButton1)
+            }
+        }
 
+        //sets onclicklisteners for the winnerbuttons
+        for(button in winnerButtons){
+            button.setOnClickListener{
+                val name = button.text.toString()
+                setWinnerButtonName(name)
+            }
+        }
 
-        //TODO add correct number of winnerbuttons
-///////////////////////////////////////////////////////////////////TESTS///////////////////////////////////////////////
-        val newButton = Button(this)
-        val newButton2 = Button(this)
-        linear.addView(newButton)
-        linear.addView(newButton2)
-        winnerButtons.add(newButton)
-        winnerButtons.add(newButton2)
+        //make a champion button and label
+        val newLabel = TextView(this)
+        newLabel.text="Champion "
+        linear.addView(newLabel)
+        val newButton1 = Button(this)
+        linear.addView(newButton1)
+        winnerButtons.add(newButton1)
 
-        //Test toast to test if the names have been transferred correctly
-        //Toast.makeText(this, names.last(), Toast.LENGTH_SHORT).show()
-///////////////////////////////////////////////////////////////////TESTS///////////////////////////////////////////////
     }
 
     //method for setting the first empty winner button to the clicked button's name
@@ -80,6 +115,10 @@ class BracketView : AppCompatActivity() {
         while(nameNotSet){
             if(winnerButtons[arrayIterator].text==""){
                 winnerButtons[arrayIterator].text=name
+                //Make a toast for the champion
+                if(winnerButtons.last().text!=""){
+                    Toast.makeText(this, "Congratulations " + name, Toast.LENGTH_SHORT).show()
+                }
                 nameNotSet=false
             }else if(winnerButtons.last().text!=""){
                 nameNotSet=false
